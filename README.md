@@ -18,11 +18,12 @@ optional project name that the program uses to filter time entries.
 
 For example, running
 
-    lein run 0123456789ABCDEF 2017-05-01 2017-05-31 "cleaning"
+    lein run 0123456789ABCDEF 2017-05-01 2017-05-31 cleaning
     
 returns all time entries that are in a project called "cleaning" for the month
 of May 2017:
 
+    "date","duration","description"
     "2017-05-02","1.00","Kitchen"
     "2017-05-08","2.00","Bathroom"
     "2017-05-15","5.00","Office"
