@@ -17,15 +17,16 @@
          #(reduce-kv
            (fn [m k v]
              (assoc m k (cond
-                          (= "date" k) (subs v 0 10)
-                          (= "duration" k) (format "%.2f" (/ v 3600000.0))
+                          (= "Date" k) (subs v 0 10)
+                          (= "Duration" k) (format "%.2f" (/ v 3600000.0))
                           :else v)))
            {}
            %)
          (map
           #(-> %
                (select-keys ["start" "dur" "description"])
-               (set/rename-keys {"start" "date"
-                                 "dur" "duration"}))
+               (set/rename-keys {"start" "Date"
+                                 "dur" "Duration"
+                                 "description" "Description"}))
           data))]
-    (println (compile-csv row-data ["date" "duration" "description"]))))
+    (println (compile-csv row-data ["Date" "Duration" "Description"]))))

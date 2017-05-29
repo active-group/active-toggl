@@ -23,7 +23,7 @@ For example, running
 returns all time entries that are in a project called "cleaning" for the month
 of May 2017:
 
-    "date","duration","description"
+    "Date","Duration","Description"
     "2017-05-02","1.00","Kitchen"
     "2017-05-08","2.00","Bathroom"
     "2017-05-15","5.00","Office"
