@@ -7,4 +7,5 @@
                  [clj-http "3.6.0"]
                  [org.clojure/data.json "0.2.6"]
                  [clojure-csv/clojure-csv "2.0.1"]]
+  :jvm-opts ["-Duser.country=US" "-Duser.language=en"]
   :main active-toggl.main)
