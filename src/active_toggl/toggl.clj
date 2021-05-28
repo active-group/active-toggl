@@ -13,7 +13,7 @@
 (defn get-workspace-id
   [api-token]
   (get (first 
-        (json->clj (client/get "https://www.toggl.com/api/v8/workspaces" (basic-auth api-token))))
+        (json->clj (client/get "https://api.track.toggl.com/api/v8/workspaces" (basic-auth api-token))))
        "id"))
 
 (defn detailed-report
@@ -24,7 +24,7 @@
                accu []]
           (let [_ (Thread/sleep 1000) ;; avoid api lock out for too frequent requests
                 result (json->clj
-                        (client/get (str "https://toggl.com/reports/api/v2/details?workspace_id=" workspace-id
+                        (client/get (str "https://api.track.toggl.com/reports/api/v2/details?workspace_id=" workspace-id
                                          "&page=" page
                                          "&user_agent=active-toggl&display_hours=decimal&since=" since
                                          (when until (str "&until=" until)))
