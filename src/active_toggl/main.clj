@@ -1,10 +1,13 @@
 (ns active-toggl.main
   (:require [clojure.tools.cli :refer [parse-opts]]
-            [active-toggl.csv :as csv])
+            [active-toggl.arbeitszeit :as arbeitszeit]
+            [active-toggl.stundenzettel :as stundenzettel])
   (:gen-class))
 
 (def opts
-  [["-h" "--help" "Show this help about the command line arguments."]])
+  [["-h" "--help" "Show this help about the command line arguments."]
+   ["-s" "--stundenzettel" "Return data as Stundenzettel () [default]"]
+   ["-a" "--arbeitszeit" "Return data as Arbeitszeit ()"]])
 
 (defn print-usage [opts-map]
   (do (println "Usage: active-toggl [options] <api-token> [project]")
@@ -28,4 +31,9 @@
           (System/exit -1))
 
       :else
-      (apply csv/detailed-report (get opts-map :arguments)))))
+      (cond
+        (:arbeitszeit (:options opts-map))
+        (apply arbeitszeit/arbeitszeit (get opts-map :arguments))
+
+        :else #_(:stundenzettel (:options opts-map)) ;; default
+        (apply stundenzettel/stundenzettel (get opts-map :arguments))))))
