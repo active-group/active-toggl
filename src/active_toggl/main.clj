@@ -6,8 +6,8 @@
 
 (def opts
   [["-h" "--help" "Show this help about the command line arguments."]
-   ["-s" "--stundenzettel" "Return data as Stundenzettel () [default]"]
-   ["-a" "--arbeitszeit" "Return data as Arbeitszeit ()"]])
+   ["-s" "--stundenzettel" "Return data as Stundenzettel (date, duration, description) [default]"]
+   ["-a" "--arbeitszeit" "Return data as Arbeitszeit (date, start, end, duration)"]])
 
 (defn print-usage [opts-map]
   (do (println "Usage: active-toggl [options] <api-token> [project]")

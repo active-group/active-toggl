@@ -19,8 +19,8 @@
   (let [entries
         (mapv (fn [entry]
                 {"Date" (subs (get entry "start") 0 10)
-                 "Start" (get entry "start")
-                 "End" (get entry "end")
+                 "Start" (subs (get entry "start") 11 19)
+                 "End" (subs (get entry "end") 11 19)
                  "Duration" (/ (get entry "dur" 0) 3600000.0)})
               detailed-data)
         by-date
