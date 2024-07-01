@@ -35,7 +35,8 @@
             (if (> total-count (* page per-page))
               (recur (inc page) data)
               (filter #(if project
-                         (re-matches (re-pattern (str "(?i)" project)) (or (get % "project") ""))
+                         (or (re-matches (re-pattern (str "(?i)" project)) (or (get % "project") ""))
+                             (re-matches (re-pattern (str "(?i)" project)) (or (get % "client") "")))
                          true)
                       data))))]
     data))
