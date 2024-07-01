@@ -13,7 +13,7 @@
 (defn get-workspace-id
   [api-token]
   (get (first 
-        (json->clj (client/get "https://api.track.toggl.com/api/v8/workspaces" (basic-auth api-token))))
+        (json->clj (client/get "https://api.track.toggl.com/api/v9/workspaces" (basic-auth api-token))))
        "id"))
 
 (defn detailed-report
@@ -28,7 +28,7 @@
                                          "&page=" page
                                          "&user_agent=active-toggl&display_hours=decimal&since=" since
                                          (when until (str "&until=" until)))
-                                    (basic-auth api-token)))
+                                    (basic-auth api-token))) ;; reports-api can stay at 2 for the moment (see https://toggl.com/blog/toggl-track-reports-api-v3)
                 total-count (get result "total_count")
                 per-page (get result "per_page")
                 data (concat accu (get result "data"))]
