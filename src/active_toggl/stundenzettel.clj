@@ -18,7 +18,6 @@
    (map
     #(-> %
          (select-keys ["start" "dur" "description"])
-         (update "description" (fn [dsc] (str (get % "project") ": " dsc)))
          (set/rename-keys {"start" "Date"
                            "dur" "Duration"
                            "description" "Description"}))
